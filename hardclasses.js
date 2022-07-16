@@ -2,7 +2,10 @@
 class Company {
 	constructor(companyName, currentProjects, completedProjects, staff) {
 	  this.companyName = companyName;
-	  this.currenProjects = currentProjects;
+	  this.currentProjects = currentProjects;
+	  for (let i = 0; i < currentProjects.length; i++) {
+		currentProjects[i].completeProject.bind(this)
+	  }
 	  this.completedProjects = completedProjects;
 	  this.staff = staff;
 	}
@@ -29,7 +32,8 @@ class Project {
 	  this.Team = Team;
 	}
 	completeProject() {
-		
+		this.completedProjects.push(projectName)
+		this.currenProjects.filter(function(e) { return e !== projectName})
 	}
   }
 class Employee {

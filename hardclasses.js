@@ -4,26 +4,28 @@ class Company {
     this.companyName = companyName;
     this.currentProjects = currentProjects;
     for (let i = 0; i < currentProjects.length; i++) {
-      currentProjects[i].completeProject.bind(this);
+      currentProjects[i].completeProject = currentProjects[
+        i
+      ].completeProject.bind(this, currentProjects[i]);
     }
     this.completedProjects = completedProjects;
     this.staff = staff;
   }
-  addNewCompanyMember(newmember) {
-    if (newmember.constructor.name == "FrontendDeveloper")
-      this.staff.frontend.push;
-    else if (newmember.constructor.name == "BackendDeveloper")
-      this.staff.backend.push;
-    else if (newmember.constructor.name == "Manager") this.staff.managers.push;
+  addNewCompanyMember(member) {
+    if (member.constructor.name == "FrontendDeveloper")
+      this.staff.developers.frontend.push;
+    else if (member.constructor.name == "BackendDeveloper")
+      this.staff.developers.backend.push;
+    else if (member.constructor.name == "Manager") this.staff.managers.push;
   }
   addProject(Project) {
     this.currentProjects.push(Project);
   }
   getMembersQuantity() {
     console.log(
-      this.staff.managers.size +
-        this.staff.developers.frontend.size +
-        this.staff.developers.backend.size
+      this.staff.managers.length +
+        this.staff.developers.frontend.length +
+        this.staff.developers.backend.length
     );
   }
 }
@@ -33,19 +35,21 @@ class Project {
     this.projectName = projectName;
     this.minQualification = minQualification;
     this.Team = Team;
+    this.secret = this;
   }
-  completeProject() {
-    this.completedProjects.push(projectName);
-    this.currenProjects.filter(function (e) {
-      return e !== projectName;
+  completeProject(oldthis) {
+    this.completedProjects.push(oldthis);
+    this.currentProjects = this.currentProjects.filter(function (e) {
+      return e !== oldthis;
     });
   }
-  addNewProjectMember() {
-    if (newmember.constructor.name == "FrontendDeveloper")
-      this.Team.frontend.push;
-    else if (newmember.constructor.name == "BackendDeveloper")
-      this.Team.backend.push;
-    else if (newmember.constructor.name == "Manager") this.Team.managers.push;
+  addNewProjectMember(member) {
+    if (member.constructor.name == "FrontendDeveloper")
+      this.Team.developers.frontend.push(member);
+    else if (member.constructor.name == "BackendDeveloper")
+      this.Team.developers.backend.push(member);
+    else if (member.constructor.name == "Manager")
+      this.Team.managers.push(member);
   }
 }
 class Employee {
@@ -95,8 +99,8 @@ class Manager extends Employee {
     this.projectQuantity = projectQuantity;
   }
   checkMember(minQuality, member) {
-    if (minQuality < member.grade) return false;
-    else return true;
+    if (minQuality <= member.grade) return true;
+    else return false;
   }
 }
 
@@ -141,6 +145,15 @@ let managerKatya = new Manager(
   41
 );
 
+let frontendDima = new Manager(
+  "Dima",
+  "L1",
+  ["hardworking", "great dancer"],
+  "Masterbim",
+  ["git", "js", "C++"],
+  21
+);
+
 // objects!
 let staffTeam = {
   developers: {
@@ -164,6 +177,6 @@ let school21 = new Company(
   staffTeam
 );
 
-console.log(backendOleg, managerSveta);
-console.log();
-
+console.log(frontendMax);
+frontendMax.expandStack("Unity");
+console.log(frontendMax);

@@ -1,41 +1,53 @@
 //classes!
 class Company {
-	constructor(companyName, currentProjects, completedProjects, staff) {
-	  this.companyName = companyName;
-	  this.currentProjects = currentProjects;
-	  for (let i = 0; i < currentProjects.length; i++) {
-		currentProjects[i].completeProject.bind(this)
-	  }
-	  this.completedProjects = completedProjects;
-	  this.staff = staff;
-	}
-	addNewCompanyMember(newmember) {
-	  if (newmember.constructore.name == "FrontendDeveloper")
-		  this.staff.frontend.push
-	  else if (newmember.constructore.name == "BackendDeveloper")
-		  this.staff.backend.push
-	  else if (newmember.constructore.name == "Manager")
-		  this.staff.managers.push
-	}
-	addProject(Project) {
-	  this.currenProjects.push(Project)
-	}
-	getMembersQuantity() {
-	  console.log(this.staff.managers.size + this.staff.developers.frontend.size + this.staff.developers.backend.size)
-	}
+  constructor(companyName, currentProjects, completedProjects, staff) {
+    this.companyName = companyName;
+    this.currentProjects = currentProjects;
+    for (let i = 0; i < currentProjects.length; i++) {
+      currentProjects[i].completeProject.bind(this);
+    }
+    this.completedProjects = completedProjects;
+    this.staff = staff;
   }
-  
+  addNewCompanyMember(newmember) {
+    if (newmember.constructor.name == "FrontendDeveloper")
+      this.staff.frontend.push;
+    else if (newmember.constructor.name == "BackendDeveloper")
+      this.staff.backend.push;
+    else if (newmember.constructor.name == "Manager") this.staff.managers.push;
+  }
+  addProject(Project) {
+    this.currenProjects.push(Project);
+  }
+  getMembersQuantity() {
+    console.log(
+      this.staff.managers.size +
+        this.staff.developers.frontend.size +
+        this.staff.developers.backend.size
+    );
+  }
+}
+
 class Project {
-	constructor(projectName, minQualification, Team) {
-	  this.projectName = projectName;
-	  this.minQualification = minQualification;
-	  this.Team = Team;
-	}
-	completeProject() {
-		this.completedProjects.push(projectName)
-		this.currenProjects.filter(function(e) { return e !== projectName})
-	}
+  constructor(projectName, minQualification, Team) {
+    this.projectName = projectName;
+    this.minQualification = minQualification;
+    this.Team = Team;
   }
+  completeProject() {
+    this.completedProjects.push(projectName);
+    this.currenProjects.filter(function (e) {
+      return e !== projectName;
+    });
+  }
+  addNewProjectMember() {
+    if (newmember.constructor.name == "FrontendDeveloper")
+      this.Team.frontend.push;
+    else if (newmember.constructor.name == "BackendDeveloper")
+      this.Team.backend.push;
+    else if (newmember.constructor.name == "Manager") this.Team.managers.push;
+  }
+}
 class Employee {
   constructor(name, grade, skills, company) {
     this.name = name;
@@ -56,44 +68,78 @@ class Employee {
   }
 }
 class FrontendDeveloper extends Employee {
-	constructor(name, grade, skills, company, stack, projectQuantity) {
-		super(name, grade, skills, company)
-		this.stack = stack
-		this.developerSide = "frontend"
-		this.projectQuantity = projectQuantity
-	}
-	expandStack(newTech) {
-		this.stack.push(newTech)
-	}
+  constructor(name, grade, skills, company, stack, projectQuantity) {
+    super(name, grade, skills, company);
+    this.stack = stack;
+    this.developerSide = "frontend";
+    this.projectQuantity = projectQuantity;
+  }
+  expandStack(newTech) {
+    this.stack.push(newTech);
+  }
 }
 class BackendDeveloper extends Employee {
-	constructor(name, grade, skills, company, stack, projectQuantity) {
-		super(name, grade, skills, company)
-		this.stack = stack
-		this.developerSide = "backend"
-		this.projectQuantity = projectQuantity
-	}
-	expandStack(newTech) {
-		this.stack.push(newTech)
-	}
+  constructor(name, grade, skills, company, stack, projectQuantity) {
+    super(name, grade, skills, company);
+    this.stack = stack;
+    this.developerSide = "backend";
+    this.projectQuantity = projectQuantity;
+  }
+  expandStack(newTech) {
+    this.stack.push(newTech);
+  }
 }
 class Manager extends Employee {
-	constructor(name, grade, skills, company, projectQuantity) {
-	  super(name, grade, skills, company)
-	  this.projectQuantity = projectQuantity;
-	  checkMember(minQuantity) {
-		  if ()
-	  }
-	}
+  constructor(name, grade, skills, company, projectQuantity) {
+    super(name, grade, skills, company);
+    this.projectQuantity = projectQuantity;
   }
+  checkMember(minQuality, member) {
+    if (minQuality < member.grade) return false;
+    else return true;
+  }
+}
 
 // frontend, backend, manager objects
 
-let frontendMax = new FrontendDeveloper("Max", "L1", ["hardworking"], "Unemployed", ["git", "js"], 21)
-let frontendLeva = new FrontendDeveloper("Leva", "L3", ["hardworking", "great dancer"], "Vkusvill", ["git", "js", "C++"], 21)
-let backendOleg = new BackendDeveloper("Oleg", "L2", ["fluent english"], "Mail.ru",["nodejs", "git"], 10)
-let managerSveta = new Manager("Sveta", "L4", ["woman", "good kisser"], "School21", 31)
-let managerKatya = new Manager("Katya", "L3", ["speedrunner", "good chef"], "School21", 41)
+let frontendMax = new FrontendDeveloper(
+  "Max",
+  "L1",
+  ["hardworking"],
+  "Unemployed",
+  ["git", "js"],
+  21
+);
+let frontendLeva = new FrontendDeveloper(
+  "Leva",
+  "L3",
+  ["hardworking", "great dancer"],
+  "Vkusvill",
+  ["git", "js", "C++"],
+  21
+);
+let backendOleg = new BackendDeveloper(
+  "Oleg",
+  "L2",
+  ["fluent english"],
+  "Mail.ru",
+  ["nodejs", "git"],
+  10
+);
+let managerSveta = new Manager(
+  "Sveta",
+  "L4",
+  ["woman", "good kisser"],
+  "School21",
+  31
+);
+let managerKatya = new Manager(
+  "Katya",
+  "L3",
+  ["speedrunner", "good chef"],
+  "School21",
+  41
+);
 
 // objects!
 let staffTeam = {

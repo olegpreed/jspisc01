@@ -1,0 +1,6 @@
+if ("L1" < "L2")
+	console.log("L1 < L2")
+else if ("L1" == "L2")
+	console.log("L1 = L2")
+else if ("L1" > "L2")
+	console.log("L1 > L2")

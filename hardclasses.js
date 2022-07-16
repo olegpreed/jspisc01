@@ -14,10 +14,10 @@ export class Company {
   }
   addNewCompanyMember(member) {
     if (member.constructor.name == "FrontendDeveloper")
-      this.staff.developers.frontend.push;
+      this.staff.developers.frontend.push(member);
     else if (member.constructor.name == "BackendDeveloper")
-      this.staff.developers.backend.push;
-    else if (member.constructor.name == "Manager") this.staff.managers.push;
+      this.staff.developers.backend.push(member);
+    else if (member.constructor.name == "Manager") this.staff.managers.push(member);
   }
   addProject(Project) {
     this.currentProjects.push(Project);

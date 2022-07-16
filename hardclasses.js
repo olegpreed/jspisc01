@@ -32,10 +32,10 @@ export class Company {
 }
 
 export class Project {
-  constructor(projectName, minQualification, Team) {
+  constructor(projectName, minQualification, team) {
     this.projectName = projectName;
     this.minQualification = minQualification;
-    this.Team = Team;
+    this.team = team;
     this.secret = this;
   }
   completeProject(oldthis) {
@@ -46,11 +46,11 @@ export class Project {
   }
   addNewProjectMember(member) {
     if (member.constructor.name == "FrontendDeveloper")
-      this.Team.developers.frontend.push(member);
+      this.team.developers.frontend.push(member);
     else if (member.constructor.name == "BackendDeveloper")
-      this.Team.developers.backend.push(member);
+      this.team.developers.backend.push(member);
     else if (member.constructor.name == "Manager")
-      this.Team.managers.push(member);
+      this.team.managers.push(member);
   }
 }
 

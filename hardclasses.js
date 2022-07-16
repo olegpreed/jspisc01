@@ -36,7 +36,6 @@ export class Project {
     this.projectName = projectName;
     this.minQualification = minQualification;
     this.team = team;
-    this.secret = this;
   }
   completeProject(oldthis) {
     this.completedProjects.push(oldthis);

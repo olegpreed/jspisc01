@@ -1,5 +1,37 @@
 //classes!
-
+class Company {
+	constructor(companyName, currentProjects, completedProjects, staff) {
+	  this.companyName = companyName;
+	  this.currenProjects = currentProjects;
+	  this.completedProjects = completedProjects;
+	  this.staff = staff;
+	}
+	addNewCompanyMember(newmember) {
+	  if (newmember.constructore.name == "FrontendDeveloper")
+		  this.staff.frontend.push
+	  else if (newmember.constructore.name == "BackendDeveloper")
+		  this.staff.backend.push
+	  else if (newmember.constructore.name == "Manager")
+		  this.staff.managers.push
+	}
+	addProject(Project) {
+	  this.currenProjects.push(Project)
+	}
+	getMembersQuantity() {
+	  console.log(this.staff.managers.size + this.staff.developers.frontend.size + this.staff.developers.backend.size)
+	}
+  }
+  
+class Project {
+	constructor(projectName, minQualification, Team) {
+	  this.projectName = projectName;
+	  this.minQualification = minQualification;
+	  this.Team = Team;
+	}
+	completeProject() {
+		
+	}
+  }
 class Employee {
   constructor(name, grade, skills, company) {
     this.name = name;
@@ -19,17 +51,6 @@ class Employee {
     this.skills.push(newSkillName);
   }
 }
-
-class Manager extends Employee {
-  constructor(name, grade, skills, company, projectQuantity) {
-	super(name, grade, skills, company)
-    this.projectQuantity = projectQuantity;
-	checkMember(minQuantity) {
-		if ()
-	}
-  }
-}
-
 class FrontendDeveloper extends Employee {
 	constructor(name, grade, skills, company, stack, projectQuantity) {
 		super(name, grade, skills, company)
@@ -41,7 +62,6 @@ class FrontendDeveloper extends Employee {
 		this.stack.push(newTech)
 	}
 }
-
 class BackendDeveloper extends Employee {
 	constructor(name, grade, skills, company, stack, projectQuantity) {
 		super(name, grade, skills, company)
@@ -53,33 +73,15 @@ class BackendDeveloper extends Employee {
 		this.stack.push(newTech)
 	}
 }
-
-class Company {
-  constructor(companyName, currentProjects, completedProjects, staff) {
-    this.companyName = companyName;
-    this.currenProjects = currentProjects;
-    this.completedProjects = completedProjects;
-    this.staff = staff;
+class Manager extends Employee {
+	constructor(name, grade, skills, company, projectQuantity) {
+	  super(name, grade, skills, company)
+	  this.projectQuantity = projectQuantity;
+	  checkMember(minQuantity) {
+		  if ()
+	  }
+	}
   }
-  addNewCompanyMember(newmember) {
-	if (newmember.constructore.name == "FrontendDeveloper")
-		this.staff.frontend.push
-  }
-  addProject(Project) {
-	this.currenProjects.push(Project)
-  }
-  getMembersQuantity() {
-	console.log(this.staff.managers.size + this.staff.developers.frontend.size + this.staff.developers.backend.size)
-  }
-}
-
-class Project {
-  constructor(projectName, minQualification, Team) {
-    this.projectName = projectName;
-    this.minQualification = minQualification;
-    this.Team = Team;
-  }
-}
 
 // frontend, backend, manager objects
 
@@ -98,9 +100,8 @@ let staffTeam = {
   managers: [managerSveta, managerKatya],
 };
 
-
 let Minishell = new Project("Minishell", 12);
-let skills = ["dancing", "singing", "photoshop"];
-let Tom = new Employee("Tom", "L2", skills, "Apple");
+
 console.log(Tom);
+
 let Apple = new Company("Apple");

@@ -25,6 +25,7 @@ export class Company {
       this.staff.managers.push(member);
   }
   addProject(project) {
+	project.addNewProjectMember = project.addNewProjectMember.bind(this, project)
     this.currentProjects.push(project);
   }
   getMembersQuantity() {
@@ -55,18 +56,23 @@ export class Project {
   }
   addNewProjectMember(oldthis, member) {
     if ((member.grade >= oldthis.minQualification) && (this.companyName == member.company)) {
-      if ((member.constructor.name == "FrontendDeveloper")
-	  && (!this.currentProjects.foreach(function(e) { 
-		return (e.team.developers.frontend.find(el => el === member))
-	})))
+      if (member.constructor.name == "FrontendDeveloper") {
+		for (const e of this.currentProjects) {
+			if (e.team.developers.frontend.find(el => el === member)) {
+				console.log("what!!!")
+				return
+			}
+		}
+		console.log("FREE")
         oldthis.team.developers.frontend.push(member);
+	  }
       else if ((member.constructor.name == "BackendDeveloper")
-	   && (!this.currentProjects.foreach(function(e) { 
+	   && (!this.currentProjects.forEach(function(e) { 
 		return (e.team.developers.backend.find(el => el === member))
 	})))
         oldthis.team.developers.backend.push(member);
       else if ((member.constructor.name == "Manager")  
-	  && (!this.currentProjects.foreach(function(e) { 
+	  && (!this.currentProjects.forEach(function(e) { 
 		return (e.team.manager.find(el => el === member))
 	}))) oldthis.team.manager = member;
     }

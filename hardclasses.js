@@ -19,8 +19,8 @@ export class Company {
       this.staff.developers.backend.push(member);
     else if (member.constructor.name == "Manager") this.staff.managers.push(member);
   }
-  addProject(Project) {
-    this.currentProjects.push(Project);
+  addProject(project) {
+    this.currentProjects.push(project);
   }
   getMembersQuantity() {
     console.log(
@@ -49,13 +49,13 @@ export class Project {
     else if (member.constructor.name == "BackendDeveloper")
       this.team.developers.backend.push(member);
     else if (member.constructor.name == "Manager")
-      this.team.managers.push(member);
+      this.team.manager = member;
   }
 }
 
 export class FrontendDeveloper extends Employee {
-  constructor(name, grade, skills, company, stack, projectQuantity) {
-    super(name, grade, skills, company);
+  constructor(name, grade, hardSkills, company, stack, projectQuantity) {
+    super(name, grade, hardSkills, company);
     this.stack = stack;
     this.developerSide = "frontend";
     this.projectQuantity = projectQuantity;
@@ -66,8 +66,8 @@ export class FrontendDeveloper extends Employee {
 }
 
 export class BackendDeveloper extends Employee {
-  constructor(name, grade, skills, company, stack, projectQuantity) {
-    super(name, grade, skills, company);
+  constructor(name, grade, hardSkills, company, stack, projectQuantity) {
+    super(name, grade, hardSkills, company);
     this.stack = stack;
     this.developerSide = "backend";
     this.projectQuantity = projectQuantity;
@@ -78,8 +78,8 @@ export class BackendDeveloper extends Employee {
 }
 
 export class Manager extends Employee {
-  constructor(name, grade, skills, company, projectQuantity) {
-    super(name, grade, skills, company);
+  constructor(name, grade, hardSkills, company, projectQuantity) {
+    super(name, grade, hardSkills, company);
     this.projectQuantity = projectQuantity;
   }
   checkMember(minQuality, member) {

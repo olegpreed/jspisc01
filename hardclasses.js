@@ -8,6 +8,9 @@ export class Company {
       currentProjects[i].completeProject = currentProjects[
         i
       ].completeProject.bind(this, currentProjects[i]);
+	  currentProjects[i].addNewProjectMember = currentProjects[
+        i
+      ].addNewProjectMember.bind(this, currentProjects[i]); 
     }
     this.completedProjects = completedProjects;
     this.staff = staff;
@@ -50,13 +53,22 @@ export class Project {
       return e !== oldthis;
     });
   }
-  addNewProjectMember(member) {
-    if (member.grade >= this.minQualification) {
-      if (member.constructor.name == "FrontendDeveloper")
-        this.team.developers.frontend.push(member);
-      else if (member.constructor.name == "BackendDeveloper")
-        this.team.developers.backend.push(member);
-      else if (member.constructor.name == "Manager") this.team.manager = member;
+  addNewProjectMember(oldthis, member) {
+    if ((member.grade >= oldthis.minQualification) && (this.companyName == member.company)) {
+      if ((member.constructor.name == "FrontendDeveloper")
+	  && (!this.currentProjects.foreach(function(e) { 
+		return (e.team.developers.frontend.find(el => el === member))
+	})))
+        oldthis.team.developers.frontend.push(member);
+      else if ((member.constructor.name == "BackendDeveloper")
+	   && (!this.currentProjects.foreach(function(e) { 
+		return (e.team.developers.backend.find(el => el === member))
+	})))
+        oldthis.team.developers.backend.push(member);
+      else if ((member.constructor.name == "Manager")  
+	  && (!this.currentProjects.foreach(function(e) { 
+		return (e.team.manager.find(el => el === member))
+	}))) oldthis.team.manager = member;
     }
   }
 }
@@ -91,9 +103,9 @@ export class Manager extends Employee {
     this.projectQuantity = projectQuantity;
   }
   checkMember(minQuality, member) {
-	if (this.company === member.company) {
-    if (minQuality <= member.grade) return true;
-    else return false;
-	}
+    if (this.company === member.company) {
+      if (minQuality <= member.grade) return true;
+      else return false;
+    }
   }
 }

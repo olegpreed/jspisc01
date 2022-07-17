@@ -41,9 +41,9 @@ let frontendMax = new FrontendDeveloper(
 	41
   );
   
-  let frontendDima = new Manager(
+  let frontendDima = new FrontendDeveloper(
 	"Dima",
-	"L1",
+	"L4",
 	["hardworking", "great dancer"],
 	"Masterbim",
 	["git", "js", "C++"],
@@ -77,3 +77,8 @@ let staffTeam = {
   console.log(frontendMax);
   frontendMax.expandStack("Unity");
   console.log(frontendMax);
+  console.log(miniShell)
+  school21.addNewCompanyMember(frontendDima)
+  miniShell.addNewProjectMember(frontendDima)
+  console.log(miniShell)
+  

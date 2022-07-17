@@ -13,11 +13,13 @@ export class Company {
     this.staff = staff;
   }
   addNewCompanyMember(member) {
+    member.company = this.companyName;
     if (member.constructor.name == "FrontendDeveloper")
       this.staff.developers.frontend.push(member);
     else if (member.constructor.name == "BackendDeveloper")
       this.staff.developers.backend.push(member);
-    else if (member.constructor.name == "Manager") this.staff.managers.push(member);
+    else if (member.constructor.name == "Manager")
+      this.staff.managers.push(member);
   }
   addProject(project) {
     this.currentProjects.push(project);
@@ -38,18 +40,24 @@ export class Project {
     this.team = team;
   }
   completeProject(oldthis) {
+    for (let i = 0; i < oldthis.team.developers.backend.length; i++)
+      oldthis.team.developers.backend[i].projectQuantity++;
+    for (i = 0; i < oldthis.team.developers.frontend.length; i++)
+      oldthis.team.developers.frontend[i].projectQuantity++;
+    oldthis.team.manager[i].projectQuantity++;
     this.completedProjects.push(oldthis);
     this.currentProjects = this.currentProjects.filter(function (e) {
       return e !== oldthis;
     });
   }
   addNewProjectMember(member) {
-    if (member.constructor.name == "FrontendDeveloper")
-      this.team.developers.frontend.push(member);
-    else if (member.constructor.name == "BackendDeveloper")
-      this.team.developers.backend.push(member);
-    else if (member.constructor.name == "Manager")
-      this.team.manager = member;
+    if (member.grade >= this.minQualification) {
+      if (member.constructor.name == "FrontendDeveloper")
+        this.team.developers.frontend.push(member);
+      else if (member.constructor.name == "BackendDeveloper")
+        this.team.developers.backend.push(member);
+      else if (member.constructor.name == "Manager") this.team.manager = member;
+    }
   }
 }
 
@@ -83,7 +91,9 @@ export class Manager extends Employee {
     this.projectQuantity = projectQuantity;
   }
   checkMember(minQuality, member) {
+	if (this.company === member.company) {
     if (minQuality <= member.grade) return true;
     else return false;
+	}
   }
 }

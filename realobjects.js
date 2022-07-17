@@ -49,7 +49,7 @@ let managerKatya = new Manager(
 
 let frontendDima = new FrontendDeveloper(
   "Dima",
-  "L1",
+  "L4",
   ["hardworking", "great dancer"],
   "Masterbim",
   ["git", "js", "C++"],
@@ -76,7 +76,7 @@ let team = {
 let soLong = new Project("so_long", "L2", team);
 let miniShell = new Project("minishell", "L3", team);
 
-let arrProjects = [soLong];
+let arrProjects = [];
 
 let finishedProjects = [];
 
@@ -95,8 +95,9 @@ school21.addNewCompanyMember(managerSveta);
 school21.addNewCompanyMember(backendOleg);
 school21.addNewCompanyMember(frontendLeva);
 school21.addProject(miniShell)
+school21.addProject(soLong)
+console.log(soLong);
 school21.getMembersQuantity()
 miniShell.addNewProjectMember(frontendDima);
 soLong.addNewProjectMember(frontendDima);
-console.log(miniShell);
-console.log(soLong);
+soLong.addNewProjectMember(managerKatya)
